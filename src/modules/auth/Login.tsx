@@ -9,12 +9,10 @@ import { useLoginMutation } from '../../redux/api/auth/userApi';
 import FormInput from '../../components/FormInput';
 
 const loginSchema = object({
-  email: string()
-    .min(1, 'Email address is required')
-    .email('Email Address is invalid'),
+  username: string().min(1, 'Username is required'),
   password: string()
     .min(1, 'Password is required')
-    .min(8, 'Password must be more than 8 characters')
+    .min(6, 'Password must be more than 8 characters')
     .max(32, 'Password must be less than 32 characters'),
 });
 
@@ -81,7 +79,7 @@ export const LoginPage = () => {
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           >
             <div className="mb-4">
-              <FormInput name="email" label="Email" />
+              <FormInput name="username" label="Email" />
               <FormInput name="password" label="Password" />
             </div>
             <div className="flex items-center justify-between">

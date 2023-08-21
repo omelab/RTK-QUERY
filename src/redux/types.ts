@@ -8,7 +8,10 @@ export interface UserType {
 
 export interface AuthContextType {
   user: UserType | null;
-  token: string | null;
+  tokens: {
+    access_token: string | null;
+    refresh_token: string | null;
+  };
 }
 
 export interface IGenericResponse {
@@ -17,13 +20,13 @@ export interface IGenericResponse {
 }
 
 export interface Credentials {
-  email: string;
+  username: string;
   password: string;
-  name?: string;
 }
 
 export interface responseType {
-  token(token: unknown): unknown;
+  accessToken(accessToken: unknown): unknown;
+  refreshToken(refreshToken: unknown): unknown;
   data: string;
   meta: FetchBaseQueryMeta | undefined;
 }

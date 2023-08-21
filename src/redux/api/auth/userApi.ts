@@ -1,10 +1,5 @@
 import { setToken, setUser } from '../../features/authSlice';
-import {
-  Credentials,
-  IGenericResponse,
-  UserType,
-  responseType,
-} from '../../types';
+import { Credentials, IGenericResponse, responseType } from '../../types';
 import { Cookies } from 'react-cookie';
 import { baseApi } from '../base';
 
@@ -24,22 +19,32 @@ export const userApi = baseApi.injectEndpoints({
     login: builder.mutation<responseType, Credentials>({
       query: (data) => {
         return {
-          url: '/login',
+          url: '/auth/signin',
           method: 'POST',
           body: data,
-          credentials: 'include',
         };
       },
       async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
-          const response = await queryFulfilled;
-          if (response.data.token) {
-            cookies.set('access_token', response.data.token, { path: '/' });
-            dispatch(setToken(response.data.token.toString()));
+          const {
+            data: { accessToken, refreshToken },
+          } = await queryFulfilled;
+
+          if (accessToken) {
+            cookies.set('access_token', accessToken, { path: '/' });
+            cookies.set('refresh_token', refreshToken, { path: '/' });
+
+            const token = {
+              access_token: accessToken.toString(),
+              refresh_token: refreshToken.toString(),
+            };
+
+            dispatch(setToken(token));
           }
-          await dispatch(userApi.endpoints.me.initiate());
+
+          await dispatch(userApi.endpoints.getMe.initiate(null));
         } catch (error) {
-          // console.log(error);
+          console.log(error);
         }
       },
     }),
@@ -50,23 +55,23 @@ export const userApi = baseApi.injectEndpoints({
         credentials: 'include',
       }),
     }),
-    me: builder.query<UserType, void>({
-      query: () => 'profile',
-    }),
-    getMe: builder.query<UserType, null>({
+    getMe: builder.query<any, null>({
       query() {
         return {
-          url: 'profile',
+          url: '/auth/profile',
         };
       },
-      transformResponse: (data: { user: UserType }) => {
-        return data.user;
+      transformResponse: (data: any) => {
+        const user = data;
+        user.role = 'admin';
+        return user;
       },
       async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
           dispatch(setUser(data));
         } catch (error) {
+          console.log('error');
           console.log(error);
         }
       },
@@ -78,6 +83,5 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useLogoutMutation,
-  useMeQuery,
   useGetMeQuery,
 } = userApi;

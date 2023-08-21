@@ -1,0 +1,1 @@
+export { currentTs } from './current';
