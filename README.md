@@ -144,16 +144,23 @@ const api = createApi({
 ```
 
 
-### help
+## parsing csv to string
 
-[@tailwindcs](https://tailwindcss.com/docs/guides/vite)
-[RTK Query](https://codevoweb.com/setup-redux-toolkit-and-rtk-query/)
-[JWT Authentication](https://github.com/wpcodevo/JWT_Authentication_React/tree/react_node_jwt_login)
-[Refresh Token](https://github.com/wpcodevo/JWT_Authentication_React/tree/react_node_jwt_refresh_token)
-[redux-persist](https://stackoverflow.com/questions/67943867/what-happens-when-i-use-rtk-query-with-redux-persist)
+
+[help](https://contactmentor.com/react-js-convert-csv-to-json/?expand_article=1)
+
+### help
+- [Redux-toolkit-query](https://blog.bitsrc.io/frontend-caching-with-redux-toolkit-query-14e008a632b1)
+- [RTK Query](https://codevoweb.com/setup-redux-toolkit-and-rtk-query/)
+- [State Manage](https://www.freecodecamp.org/news/use-redux-toolkit-to-manage-state-in-react-apps/)
+- [@tailwindcs](https://tailwindcss.com/docs/guides/vite)
+- [JWT Authentication](https://github.com/wpcodevo/JWT_Authentication_React/tree/react_node_jwt_login)
+- [Refresh Token](https://github.com/wpcodevo/JWT_Authentication_React/tree/react_node_jwt_refresh_token)
+- [redux-persist](https://stackoverflow.com/questions/67943867/what-happens-when-i-use-rtk-query-with-redux-persist)
 
 
 ## formater
 - [lint format](https://stackoverflow.com/questions/61731587/vscode-prettier-doesnt-format-tsx-file)
 - [lint prettier](https://dev.to/knowankit/setup-eslint-and-prettier-in-react-app-357b)
 - [ESLint + Prettier + Typescript](https://blog.devgenius.io/eslint-prettier-typescript-and-react-in-2022-e5021ebca2b1)
+- [expert-backend]https://blog.devgenius.io/become-an-expert-backend-projects-that-define-senior-developers-61ac76e17d98
