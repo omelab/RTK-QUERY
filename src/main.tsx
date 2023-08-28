@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
 import AuthMiddleware from './Helpers/AuthMiddleware';
 import App from './App.tsx';
@@ -11,13 +11,13 @@ import './main.scss';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <BrowserRouter>
         <CookiesProvider>
           <AuthMiddleware>
             <App />
           </AuthMiddleware>
         </CookiesProvider>
-      </Router>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );
